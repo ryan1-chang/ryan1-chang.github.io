@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ryan&#39;s Blog</title>
-    <link>https://ryan1-chang.github.io/</link>
-    <description>Recent content on Ryan&#39;s Blog</description>
+    <title>graalvm on Ryan&#39;s Blog</title>
+    <link>https://ryan1-chang.github.io/tags/graalvm/</link>
+    <description>Recent content in graalvm on Ryan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Fri, 16 Jul 2021 00:29:13 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 16 Jul 2021 00:29:13 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/tags/graalvm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GraalVM Native Image of Java Swing app</title>
       <link>https://ryan1-chang.github.io/post/swing-native/</link>
@@ -15,17 +15,6 @@
       <guid>https://ryan1-chang.github.io/post/swing-native/</guid>
       
         <description>&lt;p&gt;GraalVM Native Image可以將Java應用程序編譯為binary執行檔，不需要依賴JRE就可以運行，有啟動速度快和佔用較少記憶體的特點。GraalVM 21.0開始增加了對AWT和Swing的實驗性支持，雖然Java GUI應用程序不像Web應用程序受歡迎，但是我對於可以編寫一些有趣的桌面應用，並且能夠更簡單的分發給其他人使用，還是覺得是一件很棒的事！&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>自己做的第一個App</title>
-      <link>https://ryan1-chang.github.io/post/first-post/</link>
-      <pubDate>Tue, 06 Jul 2021 23:06:39 +0800</pubDate>
-      
-      <guid>https://ryan1-chang.github.io/post/first-post/</guid>
-      
-        <description>&lt;p&gt;其實早在Android 2.3還是用Eclipse開發的時代就有寫過，後來一直都是做Web，直到最近因為新冠肺炎待在家躲疫情，WFH省了通勤時間，才有了這個app的誕生，在嘗試用Android Studio開發和重新摸索一些東西後，也順利的讓程式上架了&lt;/p&gt;</description>
       
     </item>
     

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="zh-tw"
+  data-theme=""
+><head>
+  
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-201805698-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  
+  <title>
+    Ryan Chang
+      |
+      GraalVM Native Image of Java Swing app
+
+
+    
+
+  </title>
+
+  
+  <meta charset="utf-8" />
+  <meta name="keywords" content="graalvm, swing, nativeimage, java" />
+  <meta property="og:title" content="GraalVM Native Image of Java Swing app" />
+  <meta name="author" content="Ryan Chang" /><meta name="generator" content="Hugo 0.85.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta
+    name="description"
+    content="
+      嘗試GraalVM Native Image將Java Swing應用程序編譯為binary執行檔，不需要依賴JRE就可以運行
+    "
+  />
+  <meta
+    property="og:description"
+    content="
+      嘗試GraalVM Native Image將Java Swing應用程序編譯為binary執行檔，不需要依賴JRE就可以運行
+    "
+  />
+  
+    <meta name="google-site-verification" content="SPw7mH3bdZ8vvdk8eAj8tWpVuf3MFpICCeI3rjCCaa0" />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/css/main.min.e6eff2176eb511174b7079449eeac1077ed5e14fb3792a17c70e29db853e1628.css"
+    integrity="sha256-5u/yF261ERdLcHlEnurBB37V4U&#43;zeSoXxw4p24U&#43;Fig="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.f798cbda9aaa38f89eb38be6414bd082cfd71a6780375cbf67b6d2fb2b96491e.css"
+    integrity="sha256-95jL2pqqOPies4vmQUvQgs/XGmeAN1y/Z7bS&#43;yuWSR4="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous"
+  />
+  
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+  <link rel="canonical" href="/post/swing-native/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js"
+    integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js"
+      integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus="
+      crossorigin="anonymous"
+    ></script>
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="GraalVM Native Image of Java Swing app"/>
+<meta name="twitter:description" content="嘗試GraalVM Native Image將Java Swing應用程序編譯為binary執行檔，不需要依賴JRE就可以運行"/>
+
+
+
+  
+</head>
+<body>
+    <header><div
+  class="page-top 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </a>
+  <nav>
+    <ul class="nav__list" id="navMenu">
+      <div class="nav__links">
+        
+        
+          
+          <li>
+            <a
+              
+              href="/"
+              
+              title=""
+              >Home</a
+            >
+          </li>
+
+        
+          
+          <li>
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >Posts</a
+            >
+          </li>
+
+        
+        
+      </div>
+      <li>
+        
+          <a class="theme-switch" title="Switch Theme">
+            <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+          </a>
+
+        
+      </li>
+    </ul>
+  </nav>
+</div>
+</header>
+    <div class="wrapper">
+      <aside><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="logo-title">
+      <div class="title">
+        <img src="/images/profile.png" alt="profile picture" />
+        <h3 title=""><a href="/">I&#39;m Ryan Chang</a></h3>
+        <div class="description">
+          <p>目前在ASUS任職Java軟體工程師</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+      
+        <li>
+          <a href="mailto:Ryan1.Chang@yandex.com" rel="me" aria-label="e-mail">
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  </div><footer class="footer footer--sidebar">
+  <div class="by_farbox">
+    <ul class="footer__list">
+      <li class="footer__item">
+        &copy;
+        
+          Ryan Chang
+          2021
+
+
+        
+      </li>
+      
+    </ul>
+  </div>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js"
+    integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I="
+    crossorigin="anonymous"
+  ></script></div>
+</aside>
+      <main>
+        <div class="autopagerize_page_element">
+          <div class="content">
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    <div class="post-content">
+      
+      <div class="post-title">
+        <h1>GraalVM Native Image of Java Swing app</h1>
+        
+          <div class="info">
+            <em class="fas fa-calendar-day"></em>
+            <span class="date"
+              >
+                Fri, Jul 16, 2021
+
+
+              </span
+            >
+            <em class="fas fa-stopwatch"></em>
+            <span class="reading-time">閱讀時間 1 分鐘</span>
+          </div>
+
+        
+      </div><p>GraalVM Native Image可以將Java應用程序編譯為binary執行檔，不需要依賴JRE就可以運行，有啟動速度快和佔用較少記憶體的特點。GraalVM 21.0開始增加了對AWT和Swing的實驗性支持，雖然Java GUI應用程序不像Web應用程序受歡迎，但是我對於可以編寫一些有趣的桌面應用，並且能夠更簡單的分發給其他人使用，還是覺得是一件很棒的事！</p>
+<h2 id="準備環境">準備環境</h2>
+<ol>
+<li>GraalVM Community 21.1.0 based on OpenJDK 8
+<ul>
+<li>下載<a href="https://github.com/graalvm/graalvm-ce-builds/releases/tag/vm-21.1.0" target="_blank">GraalVM JDK</a>並解壓縮</li>
+<li>設定系統環境變數
+<ul>
+<li>JAVA_HOME：GraalVM的根目錄</li>
+<li>PATH：GraalVM的bin目錄</li>
+<li>GraalVM預設沒有安裝Native Image功能，需在命令列工具cmd執行下列指令
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">gu install native-image
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Microsoft Visual C++ (MSVC) Community 2019
+<ul>
+<li>下載<a href="https://visualstudio.microsoft.com/zh-hant/downloads/" target="_blank">Visual Studio 2019</a>社群版</li>
+<li>安裝過程選擇C++的桌面開發環境</li>
+</ul>
+</li>
+</ol>
+<h2 id="建置">建置</h2>
+<p>Native Image在編譯時期就要知道應用程序在執行期間所有會用到的類和方法，這也是執行Java從just-in-time (JIT)變成ahead-of time (AOT)的一種新方式，所以動態加載類、反射機制等要另外提供JSON的配置檔來告訴native-image工具關於該類的附加資訊，自己撰寫這樣的配置是很煩人的事，因此我們可以用GraalVM提供的一個javaagent來跟蹤紀錄應用程序運行時反射和JNI調用的情況，並在應用程序結束自動生成配置文件</p>
+<p>以下是一個簡單的HelloWorld Swing應用程序示例</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.ryan.main</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.awt.EventQueue</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.swing.JFrame</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Label</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainApp</span> <span class="o">{</span>
+
+	<span class="kd">private</span> <span class="n">JFrame</span> <span class="n">frmSwingNative</span><span class="o">;</span>
+
+	<span class="cm">/**
+</span><span class="cm">	 * Launch the application.
+</span><span class="cm">	 */</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">EventQueue</span><span class="o">.</span><span class="na">invokeLater</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+			<span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+				<span class="k">try</span> <span class="o">{</span>
+					<span class="n">MainApp</span> <span class="n">window</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MainApp</span><span class="o">();</span>
+					<span class="n">window</span><span class="o">.</span><span class="na">frmSwingNative</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+				<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+					<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+				<span class="o">}</span>
+			<span class="o">}</span>
+		<span class="o">});</span>
+	<span class="o">}</span>
+
+	<span class="cm">/**
+</span><span class="cm">	 * Create the application.
+</span><span class="cm">	 */</span>
+	<span class="kd">public</span> <span class="nf">MainApp</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">initialize</span><span class="o">();</span>
+	<span class="o">}</span>
+
+	<span class="cm">/**
+</span><span class="cm">	 * Initialize the contents of the frame.
+</span><span class="cm">	 */</span>
+	<span class="kd">private</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">frmSwingNative</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JFrame</span><span class="o">();</span>
+		<span class="n">frmSwingNative</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">&#34;Java Swing Native&#34;</span><span class="o">);</span>
+		<span class="n">frmSwingNative</span><span class="o">.</span><span class="na">setResizable</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+		<span class="n">frmSwingNative</span><span class="o">.</span><span class="na">setBounds</span><span class="o">(</span><span class="n">100</span><span class="o">,</span> <span class="n">100</span><span class="o">,</span> <span class="n">450</span><span class="o">,</span> <span class="n">300</span><span class="o">);</span>
+		<span class="n">frmSwingNative</span><span class="o">.</span><span class="na">setDefaultCloseOperation</span><span class="o">(</span><span class="n">JFrame</span><span class="o">.</span><span class="na">EXIT_ON_CLOSE</span><span class="o">);</span>
+		<span class="n">frmSwingNative</span><span class="o">.</span><span class="na">getContentPane</span><span class="o">().</span><span class="na">setLayout</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+
+		<span class="n">Label</span> <span class="n">label</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Label</span><span class="o">(</span><span class="s">&#34;Hello, World!&#34;</span><span class="o">);</span>
+		<span class="n">label</span><span class="o">.</span><span class="na">setBounds</span><span class="o">(</span><span class="n">156</span><span class="o">,</span> <span class="n">99</span><span class="o">,</span> <span class="n">111</span><span class="o">,</span> <span class="n">30</span><span class="o">);</span>
+		<span class="n">frmSwingNative</span><span class="o">.</span><span class="na">getContentPane</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">label</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div><p>打包成可執行的JAR檔後，開啟Visual Studio 2019的x64 Native Tools Command Prompt執行下列指令</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">java -agentlib:native-image-agent<span class="o">=</span>config-output-dir<span class="o">=</span>config -jar swing-native.jar
+</code></pre></div><p>關閉應用程序後會在config目錄寫入所需的JSON檔，接著執行下列命令產生原生可執行檔，這可能需要幾分鐘</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">native-image -H:ConfigurationFileDirectories<span class="o">=</span>config --no-fallback -jar swing-native.jar MainApp
+</code></pre></div><h2 id="結果">結果</h2>
+<p>接著令人興奮的事發生了，執行Java應用程序不再需要bundle JRE，而且啟動的更快，以這個簡單的Swing程序來說幾乎是瞬間，不過需要注意的如果是比較複雜的程序，在native-image-agent運行期間沒有使用到某些UI功能，就無法檢測到JNI/反射的調用而生成不完整的配置文件，最後執行程式可能就會發生NoSuchMethodError，所以實際情況還是會需要手動檢查和修改自動生成的配置檔</p>
+<p><img src="/images/swing-native.jpg" width="500" /></p></div>
+    <div class="post-footer">
+      <div class="info">
+        
+          <span class="separator"><a class="category" href="/categories/java/">java</a></span>
+
+
+
+
+        
+
+        
+          <span class="separator"><a class="tag" href="/tags/graalvm/">graalvm</a><a class="tag" href="/tags/swing/">swing</a><a class="tag" href="/tags/nativeimage/">nativeimage</a></span>
+
+
+
+
+        
+      </div>
+    </div>
+
+    
+  </div>
+
+
+          </div>
+        </div>
+      </main>
+    </div><footer class="footer footer--base">
+  <div class="by_farbox">
+    <ul class="footer__list">
+      <li class="footer__item">
+        &copy;
+        
+          Ryan Chang
+          2021
+
+
+        
+      </li>
+      
+    </ul>
+  </div>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js"
+    integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I="
+    crossorigin="anonymous"
+  ></script></body>
+</html>
