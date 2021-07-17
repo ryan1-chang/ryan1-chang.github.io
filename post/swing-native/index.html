@@ -248,7 +248,7 @@
           </div>
 
         
-      </div><p>GraalVM Native Image可以將Java應用程序編譯為binary執行檔，不需要依賴JRE就可以運行，有啟動速度快和佔用較少記憶體的特點。GraalVM 21.0開始增加了對AWT和Swing的實驗性支持，雖然Java GUI應用程序不像Web應用程序受歡迎，但是我對於可以編寫一些有趣的桌面應用，並且能夠更簡單的分發給其他人使用，還是覺得是一件很棒的事！</p>
+      </div><p>GraalVM Native Image可以將Java應用程序編譯為binary執行檔，不需要依賴JRE就可以運行，有啟動速度快和佔用記憶體較少的特點。GraalVM 21.0開始增加了對AWT和Swing的實驗性支持，雖然Java GUI應用程序不像Web應用程序受歡迎，但是我對於可以編寫一些有趣的桌面應用，並且能夠更簡單的分發給其他人使用，還是覺得是一件很棒的事！</p>
 <h2 id="準備環境">準備環境</h2>
 <ol>
 <li>GraalVM Community 21.1.0 based on OpenJDK 8
@@ -273,7 +273,7 @@
 </li>
 </ol>
 <h2 id="建置">建置</h2>
-<p>Native Image在編譯時期就要知道應用程序在執行期間所有會用到的類和方法，這也是執行Java從just-in-time (JIT)變成ahead-of time (AOT)的一種新方式，所以動態加載類、反射機制等要另外提供JSON的配置檔來告訴native-image工具關於該類的附加資訊，自己撰寫這樣的配置是很煩人的事，因此我們可以用GraalVM提供的一個javaagent來跟蹤紀錄應用程序運行時反射和JNI調用的情況，並在應用程序結束自動生成配置文件</p>
+<p>Native Image在編譯時期就要知道應用程序在執行期間所有會用到的類和方法，這也是執行Java從just-in-time (JIT)變成ahead-of time (AOT)的一種新方式，所以動態加載類、反射機制等要另外提供JSON的配置檔來告訴native-image工具關於該類的附加資訊，自己撰寫這樣的配置是很煩人的事，因此我們可以用GraalVM提供的一個javaagent來跟蹤紀錄應用程序運行時反射和JNI調用的情況，並在應用程序結束時自動生成配置文件</p>
 <p>以下是一個簡單的HelloWorld Swing應用程序示例</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.ryan.main</span><span class="o">;</span>
 
@@ -326,12 +326,12 @@
 	<span class="o">}</span>
 <span class="o">}</span>
 
-</code></pre></div><p>打包成可執行的JAR檔後，開啟Visual Studio 2019的x64 Native Tools Command Prompt執行下列指令</p>
+</code></pre></div><p>先打包成可執行的JAR檔後，開啟Visual Studio 2019的x64 Native Tools Command Prompt執行下列指令</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">java -agentlib:native-image-agent<span class="o">=</span>config-output-dir<span class="o">=</span>config -jar swing-native.jar
 </code></pre></div><p>關閉應用程序後會在config目錄寫入所需的JSON檔，接著執行下列命令產生原生可執行檔，這可能需要幾分鐘</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">native-image -H:ConfigurationFileDirectories<span class="o">=</span>config --no-fallback -jar swing-native.jar MainApp
 </code></pre></div><h2 id="結果">結果</h2>
-<p>接著令人興奮的事發生了，執行Java應用程序不再需要bundle JRE，而且啟動的更快，以這個簡單的Swing程序來說幾乎是瞬間，不過需要注意的如果是比較複雜的程序，在native-image-agent運行期間沒有使用到某些UI功能，就無法檢測到JNI/反射的調用而生成不完整的配置文件，最後執行程式可能就會發生NoSuchMethodError，所以實際情況還是會需要手動檢查和修改自動生成的配置檔</p>
+<p>接著令人興奮的事發生了，執行Java應用程序不再需要bundle JRE，而且啟動的更快，以這個簡單的Swing程序來說幾乎是瞬間，不過需要注意的如果是比較複雜的程序，在native-image-agent運行期間沒有使用到某些UI功能，就無法檢測到JNI/反射的調用而生成不夠完整的配置文件，最後執行程式可能就會發生NoSuchMethodError，所以實際情況還是會需要手動檢查和修改自動生成的配置檔</p>
 <p><img src="/images/swing-native.jpg" width="500" /></p></div>
     <div class="post-footer">
       <div class="info">
