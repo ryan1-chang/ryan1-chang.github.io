@@ -327,7 +327,7 @@
 
 </code></pre></div><p>先打包成可執行的JAR檔後，開啟Visual Studio 2019的x64 Native Tools Command Prompt執行下列指令</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">java -agentlib:native-image-agent<span class="o">=</span>config-output-dir<span class="o">=</span>config -jar swing-native.jar
-</code></pre></div><p>關閉應用程序後會在config目錄寫入所需的JSON檔，接著執行下列命令產生原生可執行檔，這可能需要幾分鐘</p>
+</code></pre></div><p>關閉應用程序後會在config目錄寫入所需的JSON檔，接著執行下列命令產生系統原生exe可執行檔，不是像<a href="http://launch4j.sourceforge.net/" target="_blank">Launch4j</a>做出來的前導程序，這可能需要幾分鐘</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">native-image -H:ConfigurationFileDirectories<span class="o">=</span>config --no-fallback -jar swing-native.jar MainApp
 </code></pre></div><h2 id="結果">結果</h2>
 <p>接著令人興奮的事發生了，執行Java應用程序不再需要bundle JRE，而且啟動的更快，以這個簡單的Swing程序來說幾乎是瞬間，不過需要注意的如果是比較複雜的程序，在native-image-agent運行期間沒有使用到某些UI功能，就無法檢測到JNI/反射的調用而生成不夠完整的配置文件，最後執行程式可能就會發生NoSuchMethodError，所以實際情況還是會需要手動檢查和修改自動生成的配置檔</p>
