@@ -17,7 +17,7 @@
   <title>
     Ryan Chang
       |
-      Posts
+      Bundle a minimal JRE into an exe using Launch4j and Jlink
 
 
     
@@ -26,19 +26,19 @@
 
   
   <meta charset="utf-8" />
-  <meta name="keywords" content="" />
-  <meta property="og:title" content="Posts" />
+  <meta name="keywords" content="launch4j, exe, jlink, jre, java" />
+  <meta property="og:title" content="Bundle a minimal JRE into an exe using Launch4j and Jlink" />
   <meta name="author" content="Ryan Chang" /><meta name="generator" content="Hugo 0.85.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta
     name="description"
     content="
-      目前在ASUS任職Java軟體工程師
+      使用Launch4j打包java程式成exe執行檔，並自帶用Jlink生成的精簡版JRE
     "
   />
   <meta
     property="og:description"
     content="
-      目前在ASUS任職Java軟體工程師
+      使用Launch4j打包java程式成exe執行檔，並自帶用Jlink生成的精簡版JRE
     "
   />
   
@@ -74,12 +74,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
-  <link rel="canonical" href="/post/" />
+  <link rel="canonical" href="/post/jar-to-exe/" />
 
   
-  <link rel="alternate" type="application/rss+xml" href="/post/index.xml" title="Ryan's Blog" />
-
-
   
   
   
@@ -102,8 +99,8 @@
 
   
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content="目前在ASUS任職Java軟體工程師"/>
+<meta name="twitter:title" content="Bundle a minimal JRE into an exe using Launch4j and Jlink"/>
+<meta name="twitter:description" content="使用Launch4j打包java程式成exe執行檔，並自帶用Jlink生成的精簡版JRE"/>
 
 
 
@@ -141,9 +138,6 @@
           
           <li>
             <a
-              
-                class="current"
-
               
               href="/post/"
               
@@ -229,73 +223,120 @@
         <div class="autopagerize_page_element">
           <div class="content">
   <div
-    class="archive 
+    class="post 
       animated fadeInDown
 
     "
   >
-    <ul class="list-with-title">
+    <div class="post-content">
       
-        <div class="listing-title">2021</div>
+      <div class="post-title">
+        <h1>Bundle a minimal JRE into an exe using Launch4j and Jlink</h1>
         
-          <ul class="listing">
-            <div class="listing-item">
-              <div class="listing-post">
-                <a href="/post/jar-to-exe/" title="Bundle a minimal JRE into an exe using Launch4j and Jlink">Bundle a minimal JRE into an exe using Launch4j and Jlink</a>
-                <div class="post-time">
-                  <span class="date"
-                    >
-                      Jul 26
+          <div class="info">
+            <em class="fas fa-calendar-day"></em>
+            <span class="date"
+              >
+                Mon, Jul 26, 2021
 
 
-                    </span
-                  >
-                </div>
-              </div>
-            </div>
-          </ul>
+              </span
+            >
+            <em class="fas fa-stopwatch"></em>
+            <span class="reading-time">閱讀時間 1 分鐘</span>
+          </div>
 
         
-          <ul class="listing">
-            <div class="listing-item">
-              <div class="listing-post">
-                <a href="/post/swing-native/" title="GraalVM Native Image of Java Swing app">GraalVM Native Image of Java Swing app</a>
-                <div class="post-time">
-                  <span class="date"
-                    >
-                      Jul 16
+      </div><p>在Windows環境想要發布開發好的Java應用程序給別人使用，可以利用<a href="http://launch4j.sourceforge.net/" target="_blank">Launch4j</a>轉換成exe檔方便執行，Launch4j會產生一個原生啟動程序，實際上還是依賴Java的執行環境來運行程式，另外一方面可以再透過Jlink生成自定義的JRE來縮小整體的體積，從JDK 9開始架構模組化了，不再提供默認的JRE，但還是能自己用提供的jlink工具程式來創建</p>
+<h2 id="launch4j">Launch4j</h2>
+<p>範例目錄結構(<a href="https://github.com/ryan1-chang/swing-demo-l4j" target="_blank">GitHub</a>)</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">C:\swing-demo-l4j
+|-- jre
+|   |-- bin
+|   |-- conf
+|   |-- legal
+|   |-- lib
+|   `-- release
+|-- lib
+|   `-- swing-demo.jar
+|-- build.xml
+|-- icon.ico
+`-- swing-demo.exe
+
+6 directories, 5 files
+</code></pre></div><h4 id="basic頁籤">Basic頁籤</h4>
+<ul>
+<li>Output file：指定要輸出的執行檔名</li>
+<li>Jar runtime path：這裡勾選不把jar包進exe，只要能夠在exe運行時找的到就可以</li>
+<li>Icon：在執行檔可以加上個人化的圖示，exe編譯時就會用到，所以用絕對路徑直接指定</li>
+</ul>
+<p align="center">
+<img src="/images/l4j-basic.jpg" width="600" />
+</p>
+<h4 id="classpath頁籤">Classpath頁籤</h4>
+<ul>
+<li>Main class：指定要執行的main method所在的class</li>
+<li>Classpath：這裡用wildcard讓exe運行時動態解析lib目錄下的所有jar檔加入到JVM</li>
+</ul>
+<p align="center">
+<img src="/images/l4j-classpath.jpg" width="600" />
+</p>
+<h4 id="jre頁籤">JRE頁籤</h4>
+<ul>
+<li>Bundled JRE paths：指定相對於exe的jre路徑，使用64位元的就勾起來</li>
+<li>Min JRE version：如果發布程式沒有要自帶JRE，可以輸入最低需求版本會從系統環境中去搜尋</li>
+</ul>
+<p align="center">
+<img src="/images/l4j-jre.jpg" width="600" />
+</p>
+<p>最後配置完成先保存為xml，接著按下齒輪編譯產生出我們要的exe檔</p>
+<h2 id="jlink">Jlink</h2>
+<p>以前還在java 8的時候，可能開發幾十KB的程式要給其他人用，如果對方沒有安裝java執行環境，就要把自己的jre複製一份和程式一起提供就變成上百MB了，好在現在用java 11可以根據自己程式實際有用到的java模組來客製生成jre，因為我們並不總是需要一個完整的jre吧，這樣就能大幅的縮小了體積，整個就精簡多了</p>
+<p>OpenJDK 11 (LTS): <a href="https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/tag/jdk-11.0.11%2B9" target="_blank" style="font-size:16px;">jdk-11.0.11+9</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">C:\java\jdk-11.0.11+9
+|-- bin
+|-- conf
+|-- include
+|-- jmods
+|-- legal
+|-- lib
+`-- release
+
+6 directories, 1 file
+</code></pre></div><p><img src="/images/jlink.jpg" width="700" /></p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">bin\jdeps.exe --print-module-deps C:\swing-demo-l4j\lib\*.jar
+</code></pre></div><p>先用jdeps工具幫助我們分析出程式在執行時依賴的java模組，輸出結果後面可用於jlink</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">bin\jlink.exe --module-path jmods --add-modules java.base,java.desktop --strip-debug --compress=2 --no-header-files --no-man-pages --output jre
+</code></pre></div><p>接著使用jlink命令就能創建出精簡版的jre，並且可以再配合一些參數選項進一步減少產生的大小</p>
+<ul>
+<li>module-path：指定位於jdk目錄下的java模組位置</li>
+<li>add-modules：加入需要的模組，多個用逗號隔開，把前一步jdeps分析的結果貼過來</li>
+<li>output：要生成jre的資料夾路徑</li>
+</ul>
+<p>最後發布出去的結果就會像是這樣<br>
+Try it yourself</p>
+<p><img src="/images/jre-size.jpg" width="400" /></p></div>
+    <div class="post-footer">
+      <div class="info">
+        
+          <span class="separator"><a class="category" href="/categories/java/">java</a></span>
 
 
-                    </span
-                  >
-                </div>
-              </div>
-            </div>
-          </ul>
+
 
         
-          <ul class="listing">
-            <div class="listing-item">
-              <div class="listing-post">
-                <a href="/post/first-post/" title="自己做的第一個App">自己做的第一個App</a>
-                <div class="post-time">
-                  <span class="date"
-                    >
-                      Jul 6
-
-
-                    </span
-                  >
-                </div>
-              </div>
-            </div>
-          </ul>
 
         
+          <span class="separator"><a class="tag" href="/tags/launch4j/">launch4j</a><a class="tag" href="/tags/exe/">exe</a><a class="tag" href="/tags/jlink/">jlink</a><a class="tag" href="/tags/jre/">jre</a></span>
 
 
-      
-    </ul>
+
+
+        
+      </div>
+    </div>
+
+    
   </div>
 
 

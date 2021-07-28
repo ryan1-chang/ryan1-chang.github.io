@@ -6,7 +6,18 @@
     <description>Recent content in java on Ryan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Fri, 16 Jul 2021 00:29:13 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 26 Jul 2021 22:26:45 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bundle a minimal JRE into an exe using Launch4j and Jlink</title>
+      <link>https://ryan1-chang.github.io/post/jar-to-exe/</link>
+      <pubDate>Mon, 26 Jul 2021 22:26:45 +0800</pubDate>
+      
+      <guid>https://ryan1-chang.github.io/post/jar-to-exe/</guid>
+      
+        <description>&lt;p&gt;在Windows環境想要發布開發好的Java應用程序給別人使用，可以利用&lt;a href=&#34;http://launch4j.sourceforge.net/&#34; target=&#34;_blank&#34;&gt;Launch4j&lt;/a&gt;轉換成exe檔方便執行，Launch4j會產生一個原生啟動程序，實際上還是依賴Java的執行環境來運行程式，另外一方面可以再透過Jlink生成自定義的JRE來縮小整體的體積，從JDK 9開始架構模組化了，不再提供默認的JRE，但還是能自己用提供的jlink工具程式來創建&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>GraalVM Native Image of Java Swing app</title>
       <link>https://ryan1-chang.github.io/post/swing-native/</link>

@@ -2,8 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://ryan1-chang.github.io/post/jar-to-exe/</loc>
+    <lastmod>2021-07-26T22:26:45+08:00</lastmod>
+  </url><url>
     <loc>https://ryan1-chang.github.io/categories/</loc>
-    <lastmod>2021-07-16T00:29:13+08:00</lastmod>
+    <lastmod>2021-07-26T22:26:45+08:00</lastmod>
+  </url><url>
+    <loc>https://ryan1-chang.github.io/tags/exe/</loc>
+    <lastmod>2021-07-26T22:26:45+08:00</lastmod>
+  </url><url>
+    <loc>https://ryan1-chang.github.io/categories/java/</loc>
+    <lastmod>2021-07-26T22:26:45+08:00</lastmod>
+  </url><url>
+    <loc>https://ryan1-chang.github.io/tags/jlink/</loc>
+    <lastmod>2021-07-26T22:26:45+08:00</lastmod>
+  </url><url>
+    <loc>https://ryan1-chang.github.io/tags/jre/</loc>
+    <lastmod>2021-07-26T22:26:45+08:00</lastmod>
+  </url><url>
+    <loc>https://ryan1-chang.github.io/tags/launch4j/</loc>
+    <lastmod>2021-07-26T22:26:45+08:00</lastmod>
+  </url><url>
+    <loc>https://ryan1-chang.github.io/post/</loc>
+    <lastmod>2021-07-26T22:26:45+08:00</lastmod>
+  </url><url>
+    <loc>https://ryan1-chang.github.io/</loc>
+    <lastmod>2021-07-26T22:26:45+08:00</lastmod>
+  </url><url>
+    <loc>https://ryan1-chang.github.io/tags/</loc>
+    <lastmod>2021-07-26T22:26:45+08:00</lastmod>
   </url><url>
     <loc>https://ryan1-chang.github.io/tags/graalvm/</loc>
     <lastmod>2021-07-16T00:29:13+08:00</lastmod>
@@ -11,22 +38,10 @@
     <loc>https://ryan1-chang.github.io/post/swing-native/</loc>
     <lastmod>2021-07-16T00:29:13+08:00</lastmod>
   </url><url>
-    <loc>https://ryan1-chang.github.io/categories/java/</loc>
-    <lastmod>2021-07-16T00:29:13+08:00</lastmod>
-  </url><url>
     <loc>https://ryan1-chang.github.io/tags/nativeimage/</loc>
     <lastmod>2021-07-16T00:29:13+08:00</lastmod>
   </url><url>
-    <loc>https://ryan1-chang.github.io/post/</loc>
-    <lastmod>2021-07-16T00:29:13+08:00</lastmod>
-  </url><url>
-    <loc>https://ryan1-chang.github.io/</loc>
-    <lastmod>2021-07-16T00:29:13+08:00</lastmod>
-  </url><url>
     <loc>https://ryan1-chang.github.io/tags/swing/</loc>
-    <lastmod>2021-07-16T00:29:13+08:00</lastmod>
-  </url><url>
-    <loc>https://ryan1-chang.github.io/tags/</loc>
     <lastmod>2021-07-16T00:29:13+08:00</lastmod>
   </url><url>
     <loc>https://ryan1-chang.github.io/categories/android/</loc>
