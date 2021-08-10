@@ -259,7 +259,7 @@
 <li>JAVA_HOME：GraalVM的根目錄</li>
 <li>PATH：GraalVM的bin目錄</li>
 <li>GraalVM預設沒有安裝Native Image功能，需在命令列工具cmd執行下列指令
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">gu install native-image
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">gu install native-image
 </code></pre></div></li>
 </ul>
 </li>
@@ -327,12 +327,16 @@
 <span class="o">}</span>
 
 </code></pre></div><p>先打包成可執行的JAR檔後，開啟Visual Studio 2019的x64 Native Tools Command Prompt執行下列指令</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">java -agentlib:native-image-agent<span class="o">=</span>config-output-dir<span class="o">=</span>config -jar swing-native.jar
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">java -agentlib:native-image-agent=config-output-dir=config -jar swing-native.jar
 </code></pre></div><p>關閉應用程序後會在config目錄寫入所需的JSON檔，接著執行下列命令會產生系統原生exe執行檔，不是像<a href="http://launch4j.sourceforge.net/" target="_blank">Launch4j</a>做出來的前導程序而已，這可能需要幾分鐘</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">native-image -H:ConfigurationFileDirectories<span class="o">=</span>config --no-fallback -jar swing-native.jar MainApp
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">native-image -H:ConfigurationFileDirectories=config --no-fallback -jar swing-native.jar MainApp
 </code></pre></div><h2 id="結果">結果</h2>
 <p>接著令人興奮的事發生了，執行Java應用程序不再需要bundle JRE，而且啟動的更快，以這個簡單的Swing程序來說幾乎是瞬間，不過需要注意的如果是比較複雜的程序，在native-image-agent運行期間沒有使用到某些UI功能，就無法檢測到JNI/反射的調用而生成不夠完整的配置文件，最後執行程式可能就會發生NoSuchMethodError，所以實際情況還是會需要手動檢查和修改自動生成的配置檔</p>
-<p><img src="/images/swing-native.jpg" width="500" /></p></div>
+<p><img src="/images/swing-native.jpg" width="500" /></p>
+<h2 id="補充">補充</h2>
+<p>預設這樣編譯出的exe執行檔是一個console application，啟動的時候還會多跑出一個command window，這不是我們想要的完美結果，這時候可以再利用下列指令，就可以把我們的exe轉成一個真正的GUI application了</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">editbin /subsystem:windows MainApp.exe
+</code></pre></div></div>
     <div class="post-footer">
       <div class="info">
         
