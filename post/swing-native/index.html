@@ -29,7 +29,7 @@
   <meta name="keywords" content="graalvm, swing, nativeimage, java" />
   <meta property="og:title" content="GraalVM Native Image of Java Swing app" />
   <meta property="og:image" content="https://ryan1-chang.github.io/images/profile.png" />
-  <meta name="author" content="Ryan Chang" /><meta name="generator" content="Hugo 0.85.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="Ryan Chang" /><meta name="generator" content="Hugo 0.88.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta
     name="description"
     content="
@@ -175,7 +175,7 @@
         <img src="/images/profile.png" alt="profile picture" />
         <h3 title=""><a href="/">I&#39;m Ryan Chang</a></h3>
         <div class="description">
-          <p>目前在ASUS任職Java軟體工程師</p>
+          <p>目前在ASUS任職Java Web軟體工程師</p>
         </div>
       </div>
     </div>
@@ -259,7 +259,7 @@
 <li>JAVA_HOME：GraalVM的根目錄</li>
 <li>PATH：GraalVM的bin目錄</li>
 <li>GraalVM預設沒有安裝Native Image功能，需在命令列工具cmd執行下列指令
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">gu install native-image
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gu install native-image
 </code></pre></div></li>
 </ul>
 </li>
@@ -275,7 +275,7 @@
 <h2 id="建置">建置</h2>
 <p>Native Image在編譯時期就要知道應用程序在執行期間所有會用到的類和方法，這也是執行Java從just-in-time (JIT)變成ahead-of time (AOT)的一種新方式，所以動態加載類、反射機制等要另外提供JSON的配置檔來告訴native-image工具關於該類的附加資訊，自己撰寫這樣的配置是很煩人的事，因此我們可以用GraalVM提供的一個javaagent來跟蹤紀錄應用程序運行時反射和JNI調用的情況，並在應用程序結束時自動生成配置文件</p>
 <p>以下是一個簡單的HelloWorld Swing應用程序示例</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.ryan.main</span><span class="o">;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.ryan.main</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">java.awt.EventQueue</span><span class="o">;</span>
 
@@ -327,15 +327,15 @@
 <span class="o">}</span>
 
 </code></pre></div><p>先打包成可執行的JAR檔後，開啟Visual Studio 2019的x64 Native Tools Command Prompt執行下列指令</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">java -agentlib:native-image-agent=config-output-dir=config -jar swing-native.jar
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">java -agentlib:native-image-agent=config-output-dir=config -jar swing-native.jar
 </code></pre></div><p>關閉應用程序後會在config目錄寫入所需的JSON檔，接著執行下列命令會產生系統原生exe執行檔，不是像<a href="http://launch4j.sourceforge.net/" target="_blank">Launch4j</a>做出來的前導程序而已，這可能需要幾分鐘</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">native-image -H:ConfigurationFileDirectories=config --no-fallback -jar swing-native.jar MainApp
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">native-image -H:ConfigurationFileDirectories=config --no-fallback -jar swing-native.jar MainApp
 </code></pre></div><h2 id="結果">結果</h2>
 <p>接著令人興奮的事發生了，執行Java應用程序不再需要bundle JRE，而且啟動的更快，以這個簡單的Swing程序來說幾乎是瞬間，不過需要注意的如果是比較複雜的程序，在native-image-agent運行期間沒有使用到某些UI功能，就無法檢測到JNI/反射的調用而生成不夠完整的配置文件，最後執行程式可能就會發生NoSuchMethodError，所以實際情況還是會需要手動檢查和修改自動生成的配置檔</p>
 <p><img src="/images/swing-native.jpg" width="500" /></p>
 <h2 id="補充">補充</h2>
 <p>預設這樣編譯出的exe執行檔會是一個console application，啟動的時候還會多跑出一個command window，這不是我們想要的完美結果，這時候可以再利用下列指令，就可以把我們的exe轉成一個真正的GUI application了</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">editbin /subsystem:windows MainApp.exe
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">editbin /subsystem:windows MainApp.exe
 </code></pre></div></div>
     <div class="post-footer">
       <div class="info">

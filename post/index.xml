@@ -6,7 +6,18 @@
     <description>Recent content in Posts on Ryan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Mon, 26 Jul 2021 22:26:45 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 Oct 2021 23:38:47 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用Kotlin和Jetpack Compose開發了一個天氣App</title>
+      <link>https://ryan1-chang.github.io/post/kotlin_jetpack_compose_app/</link>
+      <pubDate>Tue, 12 Oct 2021 23:38:47 +0800</pubDate>
+      
+      <guid>https://ryan1-chang.github.io/post/kotlin_jetpack_compose_app/</guid>
+      
+        <description>&lt;p&gt;Jetpack Compose是一套Android新的UI框架，在今年的7月28日推出了第一個穩定版本&lt;a href=&#34;https://android-developers.googleblog.com/2021/07/jetpack-compose-announcement.html&#34; target=&#34;_blank&#34;&gt;1.0&lt;/a&gt;，作為一個Android開發的新手，很榮幸能跟到這個從根本上改變開發UI方式的里程碑，UI layout不再是由一堆XML文件構成，取而代之的是用簡潔的程式碼就能宣告描述出UI的樣子，當UI的資料有變化，就會自動重建刷新顯示&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Bundle a minimal JRE into an exe using Launch4j and Jlink</title>
       <link>https://ryan1-chang.github.io/post/jar-to-exe/</link>

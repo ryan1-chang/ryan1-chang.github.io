@@ -29,7 +29,7 @@
   <meta name="keywords" content="launch4j, exe, jlink, jre, java" />
   <meta property="og:title" content="Bundle a minimal JRE into an exe using Launch4j and Jlink" />
   <meta property="og:image" content="https://ryan1-chang.github.io/images/profile.png" />
-  <meta name="author" content="Ryan Chang" /><meta name="generator" content="Hugo 0.85.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="Ryan Chang" /><meta name="generator" content="Hugo 0.88.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta
     name="description"
     content="
@@ -175,7 +175,7 @@
         <img src="/images/profile.png" alt="profile picture" />
         <h3 title=""><a href="/">I&#39;m Ryan Chang</a></h3>
         <div class="description">
-          <p>目前在ASUS任職Java軟體工程師</p>
+          <p>目前在ASUS任職Java Web軟體工程師</p>
         </div>
       </div>
     </div>
@@ -251,7 +251,7 @@
       </div><p>在Windows環境想要發布開發好的Java應用程序給別人使用，可以利用<a href="http://launch4j.sourceforge.net/" target="_blank">Launch4j</a>轉換成exe檔方便執行，Launch4j會產生一個原生啟動程序，實際上還是依賴Java的執行環境來運行程式，另外一方面可以再透過Jlink生成自定義的JRE來縮小整體的體積，從JDK 9開始架構模組化了，不再提供默認的JRE，但還是能自己用提供的jlink工具程式來創建</p>
 <h2 id="launch4j">Launch4j</h2>
 <p>範例目錄結構(<a href="https://github.com/ryan1-chang/swing-demo-l4j" target="_blank">GitHub</a>)</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">C:\swing-demo-l4j
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">C:\swing-demo-l4j
 |-- jre
 |   |-- bin
 |   |-- conf
@@ -294,7 +294,7 @@
 <h2 id="jlink">Jlink</h2>
 <p>以前還在java 8的時候，可能開發幾十KB的程式要給其他人用，如果對方沒有安裝java執行環境，就要把自己的jre複製一份和程式一起提供就變成上百MB了，好在現在用java 11可以根據自己程式實際有用到的java模組來客製生成jre，因為我們並不總是需要一個完整的jre吧，這樣就能大幅的縮小了體積，整個就精簡多了</p>
 <p>OpenJDK 11 (LTS): <a href="https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/tag/jdk-11.0.11%2B9" target="_blank" style="font-size:16px;">jdk-11.0.11+9</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">C:\java\jdk-11.0.11+9
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">C:\java\jdk-11.0.11+9
 |-- bin
 |-- conf
 |-- include
@@ -305,9 +305,9 @@
 
 6 directories, 1 file
 </code></pre></div><p><img src="/images/jlink.jpg" width="700" /></p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">bin\jdeps.exe --print-module-deps C:\swing-demo-l4j\lib\*.jar
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">bin\jdeps.exe --print-module-deps C:\swing-demo-l4j\lib\*.jar
 </code></pre></div><p>先用jdeps工具幫助我們分析出程式在執行時依賴的java模組，輸出結果後面可用於jlink</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">bin\jlink.exe --module-path jmods --add-modules java.base,java.desktop --strip-debug --compress=2 --no-header-files --no-man-pages --output jre
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">bin\jlink.exe --module-path jmods --add-modules java.base,java.desktop --strip-debug --compress=2 --no-header-files --no-man-pages --output jre
 </code></pre></div><p>接著使用jlink命令就能創建出精簡版的jre，並且可以再配合一些參數選項進一步減少產生的大小</p>
 <ul>
 <li>module-path：指定位於jdk目錄下的java模組位置</li>
