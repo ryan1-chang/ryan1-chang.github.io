@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="zh-tw"
+  data-theme=""
+><head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-201805698-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-201805698-2');
+</script>
+
+  <title>
+    Ryan Chang
+      |
+      Kotlin變數宣告的val和var
+
+
+    
+
+  </title>
+
+  
+  <meta charset="utf-8" />
+  <meta name="keywords" content="kotlin, variable, property, getter, setter, mutable, readonly" />
+  <meta property="og:title" content="Kotlin變數宣告的val和var" />
+  <meta property="og:image" content="https://ryan1-chang.github.io/images/profile.png" />
+  <meta name="author" content="Ryan Chang" /><meta name="generator" content="Hugo 0.88.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta
+    name="description"
+    content="
+      Kotlin變數宣告的val和var
+    "
+  />
+  <meta
+    property="og:description"
+    content="
+      Kotlin變數宣告的val和var
+    "
+  />
+  
+    <meta name="google-site-verification" content="SPw7mH3bdZ8vvdk8eAj8tWpVuf3MFpICCeI3rjCCaa0" />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/css/main.min.e6eff2176eb511174b7079449eeac1077ed5e14fb3792a17c70e29db853e1628.css"
+    integrity="sha256-5u/yF261ERdLcHlEnurBB37V4U&#43;zeSoXxw4p24U&#43;Fig="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.f798cbda9aaa38f89eb38be6414bd082cfd71a6780375cbf67b6d2fb2b96491e.css"
+    integrity="sha256-95jL2pqqOPies4vmQUvQgs/XGmeAN1y/Z7bS&#43;yuWSR4="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous"
+  />
+  
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+  <link rel="canonical" href="/post/kotlin-val-var/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js"
+    integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js"
+      integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus="
+      crossorigin="anonymous"
+    ></script>
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Kotlin變數宣告的val和var"/>
+<meta name="twitter:description" content="Kotlin變數宣告的val和var"/>
+
+
+
+  
+</head>
+<body>
+    <header><div
+  class="page-top 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </a>
+  <nav>
+    <ul class="nav__list" id="navMenu">
+      <div class="nav__links">
+        
+        
+          
+          <li>
+            <a
+              
+              href="/"
+              
+              title=""
+              >Home</a
+            >
+          </li>
+
+        
+          
+          <li>
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >Posts</a
+            >
+          </li>
+
+        
+        
+      </div>
+      <li>
+        
+          <a class="theme-switch" title="Switch Theme">
+            <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+          </a>
+
+        
+      </li>
+    </ul>
+  </nav>
+</div>
+</header>
+    <div class="wrapper">
+      <aside><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="logo-title">
+      <div class="title">
+        <img src="/images/profile.png" alt="profile picture" />
+        <h3 title=""><a href="/">I&#39;m Ryan Chang</a></h3>
+        <div class="description">
+          <p>目前在ASUS任職Java Web軟體工程師</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+      
+        <li>
+          <a href="mailto:Ryan1.Chang@yandex.com" rel="me" aria-label="e-mail">
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li>
+          <a href="https://github.com/ryan1-chang" rel="me" aria-label="GitHub">
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  </div><footer class="footer footer--sidebar">
+  <div class="by_farbox">
+    <ul class="footer__list">
+      <li class="footer__item">
+        &copy;
+        
+          Ryan Chang
+          2021
+
+
+        
+      </li>
+      
+    </ul>
+  </div>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js"
+    integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I="
+    crossorigin="anonymous"
+  ></script></div>
+</aside>
+      <main>
+        <div class="autopagerize_page_element">
+          <div class="content">
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    <div class="post-content">
+      
+      <div class="post-title">
+        <h1>Kotlin變數宣告的val和var</h1>
+        
+          <div class="info">
+            <em class="fas fa-calendar-day"></em>
+            <span class="date"
+              >
+                Tue, Nov 2, 2021
+
+
+              </span
+            >
+            <em class="fas fa-stopwatch"></em>
+            <span class="reading-time">閱讀時間 1 分鐘</span>
+          </div>
+
+        
+      </div><blockquote>
+<p>In Kotlin, everything is an object in the sense that we can call member functions and properties on any variable.</p>
+</blockquote>
+<p>在Kotlin所有的變數都是物件，可以呼叫它的成員函數和屬性，宣告會用到兩個關鍵字是val和var</p>
+<ul>
+<li>val：用在唯讀(read-only)變數，只能賦值一次，類似在java中加上final，建議優先使用</li>
+<li>var：是可變(mutable)變數，值可以被修改，當需要重新給值的情況再改用var</li>
+</ul>
+<p>kotlin的變數和函數可以單獨存在檔案(module)的top level，不用像java都要依附在類別裡，可以見如下例子<br>
+💯IntelliJ生產力小提示：輸入<strong>main</strong>或<strong>sout</strong>再按Tab就可以快速展開一段Code Template</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">val</span> <span class="py">a</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="m">1</span> <span class="c1">// 宣告並直接給值
+</span><span class="c1"></span>    <span class="k">val</span> <span class="py">b</span> <span class="p">=</span> <span class="m">2</span> <span class="c1">// 根據初始值做型別推斷得出型態是Int
+</span><span class="c1"></span>    <span class="k">val</span> <span class="py">c</span><span class="p">:</span> <span class="n">Int</span> <span class="c1">// 延後給值，所以必須指定型態
+</span><span class="c1"></span>    <span class="n">c</span> <span class="p">=</span> <span class="m">3</span>
+    <span class="c1">// c = 4 錯誤，val不能重新給值
+</span><span class="c1"></span>    <span class="k">var</span> <span class="py">d</span> <span class="p">=</span> <span class="m">4</span> <span class="c1">// local variable
+</span><span class="c1"></span>    <span class="n">d</span> <span class="p">=</span> <span class="m">5</span>
+
+    <span class="n">incrementX</span><span class="p">()</span>
+    <span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">val</span> <span class="py">person</span> <span class="p">=</span> <span class="n">Person</span><span class="p">()</span> <span class="c1">// kotlin的物件不用new
+</span><span class="c1"></span>    <span class="c1">// person = Person() 錯誤，val不能再指向其它物件
+</span><span class="c1"></span>    <span class="n">person</span><span class="p">.</span><span class="n">age</span> <span class="p">=</span> <span class="m">36</span> <span class="c1">// 指向的物件本身可以去改變其中的屬性
+</span><span class="c1"></span>    <span class="n">println</span><span class="p">(</span><span class="s2">&#34;age=</span><span class="si">${person.age}</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">var</span> <span class="py">x</span> <span class="p">=</span> <span class="m">0</span> <span class="c1">// top level property
+</span><span class="c1"></span><span class="k">fun</span> <span class="nf">incrementX</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">x</span> <span class="o">+=</span> <span class="m">1</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
+    <span class="k">val</span> <span class="py">name</span> <span class="p">=</span> <span class="s2">&#34;Ryan&#34;</span> <span class="c1">// class read-only property
+</span><span class="c1"></span>    <span class="k">var</span> <span class="py">age</span> <span class="p">=</span> <span class="m">35</span> <span class="c1">// class mutable property
+</span><span class="c1"></span><span class="p">}</span>
+
+</code></pre></div><p>變數宣告在頂層屬性或是類別屬性時，kotlin編譯器會自動生成屬性的getter和setter，存取屬性只需要使用屬性名稱，而區域變數就只是一般的變數，不會有getter和setter，來看一下前面例子Person類別翻譯回java的樣子就很清楚了，kotlin是一種JVM language，它的bytecode一樣可以反編譯回java的原始碼<br>
+💯IntelliJ生產力小提示：Tools &gt; Kotlin &gt; Show Kotlin Bytecode 再點Decompile</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+   <span class="nd">@NotNull</span>
+   <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&#34;Ryan&#34;</span><span class="o">;</span>
+   <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="n">35</span><span class="o">;</span>
+
+   <span class="nd">@NotNull</span>
+   <span class="kd">public</span> <span class="kd">final</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">;</span>
+   <span class="o">}</span>
+
+   <span class="kd">public</span> <span class="kd">final</span> <span class="kt">int</span> <span class="nf">getAge</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">age</span><span class="o">;</span>
+   <span class="o">}</span>
+
+   <span class="kd">public</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">setAge</span><span class="o">(</span><span class="kt">int</span> <span class="n">var1</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">var1</span><span class="o">;</span>
+   <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div><p>因為name宣告成val所以只有getter，沒有setter，這表示我們只能取用它，但是不代表它的值是不可變(immutable)的，可以透過自定義的getter來改變它，只是無法直接更新它的值，參考<a href="https://kotlinlang.org/docs/properties.html#declaring-properties" target="_blank">官方定義</a>的說明</p></div>
+    <div class="post-footer">
+      <div class="info">
+        
+          <span class="separator"><a class="category" href="/categories/kotlin/">kotlin</a></span>
+
+
+
+
+        
+
+        
+          <span class="separator"><a class="tag" href="/tags/variable/">variable</a><a class="tag" href="/tags/property/">property</a><a class="tag" href="/tags/getter/">getter</a><a class="tag" href="/tags/setter/">setter</a><a class="tag" href="/tags/mutable/">mutable</a><a class="tag" href="/tags/readonly/">readonly</a></span>
+
+
+
+
+        
+      </div>
+    </div>
+
+    
+  </div>
+
+
+          </div>
+        </div>
+      </main>
+    </div><footer class="footer footer--base">
+  <div class="by_farbox">
+    <ul class="footer__list">
+      <li class="footer__item">
+        &copy;
+        
+          Ryan Chang
+          2021
+
+
+        
+      </li>
+      
+    </ul>
+  </div>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js"
+    integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I="
+    crossorigin="anonymous"
+  ></script></body>
+</html>
