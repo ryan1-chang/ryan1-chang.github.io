@@ -17,7 +17,7 @@
   <title>
     Ryan Chang
       |
-      Posts
+      Kotlin如何避免NullPointerException
 
 
     
@@ -26,20 +26,20 @@
 
   
   <meta charset="utf-8" />
-  <meta name="keywords" content="" />
-  <meta property="og:title" content="Posts" />
+  <meta name="keywords" content="kotlin, nullpointerexception, nullsafety, nullable, nonnull, safecall, safecast, elvisoperator" />
+  <meta property="og:title" content="Kotlin如何避免NullPointerException" />
   <meta property="og:image" content="https://ryan1-chang.github.io/images/profile.png" />
   <meta name="author" content="Ryan Chang" /><meta name="generator" content="Hugo 0.88.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta
     name="description"
     content="
-      目前在ASUS任職Java Web軟體工程師
+      Kotlin如何避免NullPointerException
     "
   />
   <meta
     property="og:description"
     content="
-      目前在ASUS任職Java Web軟體工程師
+      Kotlin如何避免NullPointerException
     "
   />
   
@@ -75,12 +75,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
-  <link rel="canonical" href="/post/" />
+  <link rel="canonical" href="/post/kotlin-npe/" />
 
   
-  <link rel="alternate" type="application/rss+xml" href="/post/index.xml" title="Ryan's Blog" />
-
-
   
   
   
@@ -103,8 +100,8 @@
 
   
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content="目前在ASUS任職Java Web軟體工程師"/>
+<meta name="twitter:title" content="Kotlin如何避免NullPointerException"/>
+<meta name="twitter:description" content="Kotlin如何避免NullPointerException"/>
 
 
 
@@ -142,9 +139,6 @@
           
           <li>
             <a
-              
-                class="current"
-
               
               href="/post/"
               
@@ -230,127 +224,72 @@
         <div class="autopagerize_page_element">
           <div class="content">
   <div
-    class="archive 
+    class="post 
       animated fadeInDown
 
     "
   >
-    <ul class="list-with-title">
+    <div class="post-content">
       
-        <div class="listing-title">2021</div>
+      <div class="post-title">
+        <h1>Kotlin如何避免NullPointerException</h1>
         
-          <ul class="listing">
-            <div class="listing-item">
-              <div class="listing-post">
-                <a href="/post/kotlin-npe/" title="Kotlin如何避免NullPointerException">Kotlin如何避免NullPointerException</a>
-                <div class="post-time">
-                  <span class="date"
-                    >
-                      Nov 4
+          <div class="info">
+            <em class="fas fa-calendar-day"></em>
+            <span class="date"
+              >
+                Thu, Nov 4, 2021
 
 
-                    </span
-                  >
-                </div>
-              </div>
-            </div>
-          </ul>
+              </span
+            >
+            <em class="fas fa-stopwatch"></em>
+            <span class="reading-time">閱讀時間 1 分鐘</span>
+          </div>
 
         
-          <ul class="listing">
-            <div class="listing-item">
-              <div class="listing-post">
-                <a href="/post/kotlin-val-var/" title="Kotlin變數宣告的val和var">Kotlin變數宣告的val和var</a>
-                <div class="post-time">
-                  <span class="date"
-                    >
-                      Nov 2
+      </div><p>NullPointerException已經可以說是java開發者的日常😱，只要程式邏輯上任何一處沒有經過深思熟慮都可能引發NPE的異常，那我們來看看kotlin在這一點上如何擺脫我們的困擾而做到<a href="https://kotlinlang.org/docs/null-safety.html#top" target="_blank">Null safety</a>的</p>
+<p>首先我們知道java會發生NPE的原因就是一個變數參考到null(null reference)，而沒有指向一個物件實體，這時候你去調用這個變數的成員函數或屬性，就會拋出NullPointerException，所以在kotlin就把變數型態分成非空(預設)和允許空值的兩種型態，我們來看kotlin提供的幾個運算子和以下的例子</p>
+<ul>
+<li><strong>?</strong> (safe call operator)：kotlin幫你做null check後，如果不為空再往下呼叫</li>
+<li><strong>!!</strong> (not-null assertion operator)：你堅持不為空，所以必須自己處理判斷邏輯，否則會引發NPE，不過這樣就沒有享受到kotlin帶給我們Null safety的好處，因此不建議採用這個方式</li>
+<li><strong>?:</strong> (Elvis operator)：這個類似常見的NVL方法，如果第一個運算元為空，就回傳第二個運算元當作預設值</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="py">a</span><span class="p">:</span> <span class="n">String</span> <span class="p">=</span> <span class="s2">&#34;non-null type&#34;</span>
+    <span class="k">var</span> <span class="py">b</span><span class="p">:</span> <span class="n">String</span><span class="p">?</span> <span class="p">=</span> <span class="s2">&#34;nullable type&#34;</span>
+    <span class="c1">// a = null 錯誤，cannot be set to null
+</span><span class="c1"></span>    <span class="n">b</span> <span class="p">=</span> <span class="k">null</span> <span class="c1">// can be set to null
+</span><span class="c1"></span>    <span class="n">println</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="n">println</span><span class="p">(</span><span class="n">b</span><span class="o">?.</span><span class="n">length</span><span class="p">)</span> <span class="c1">// Safe calls，如果b為空值則回傳null
+</span><span class="c1"></span>    <span class="k">val</span> <span class="py">aInt</span><span class="p">:</span> <span class="n">Int</span><span class="p">?</span> <span class="p">=</span> <span class="n">a</span> <span class="k">as</span><span class="p">?</span> <span class="n">Int</span> <span class="c1">// Safe casts，強制轉型失敗會回傳null，就不會拋出異常
+</span><span class="c1"></span>    <span class="c1">// val l = b!!.length // throw an NPE if b is null
+</span><span class="c1"></span>    <span class="k">val</span> <span class="py">l</span> <span class="p">=</span> <span class="n">b</span><span class="o">?.</span><span class="n">length</span> <span class="o">?:</span> <span class="p">-</span><span class="m">1</span>
+    <span class="n">println</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="c1">// -1
+</span><span class="c1"></span><span class="p">}</span>
 
-
-                    </span
-                  >
-                </div>
-              </div>
-            </div>
-          </ul>
-
+</code></pre></div></div>
+    <div class="post-footer">
+      <div class="info">
         
-          <ul class="listing">
-            <div class="listing-item">
-              <div class="listing-post">
-                <a href="/post/kotlin_jetpack_compose_app/" title="使用Kotlin和Jetpack Compose開發了一個天氣App">使用Kotlin和Jetpack Compose開發了一個天氣App</a>
-                <div class="post-time">
-                  <span class="date"
-                    >
-                      Oct 12
+          <span class="separator"><a class="category" href="/categories/kotlin/">kotlin</a></span>
 
 
-                    </span
-                  >
-                </div>
-              </div>
-            </div>
-          </ul>
 
-        
-          <ul class="listing">
-            <div class="listing-item">
-              <div class="listing-post">
-                <a href="/post/jar-to-exe/" title="Bundle a minimal JRE into an exe using Launch4j and Jlink">Bundle a minimal JRE into an exe using Launch4j and Jlink</a>
-                <div class="post-time">
-                  <span class="date"
-                    >
-                      Jul 26
-
-
-                    </span
-                  >
-                </div>
-              </div>
-            </div>
-          </ul>
-
-        
-          <ul class="listing">
-            <div class="listing-item">
-              <div class="listing-post">
-                <a href="/post/swing-native/" title="GraalVM Native Image of Java Swing app">GraalVM Native Image of Java Swing app</a>
-                <div class="post-time">
-                  <span class="date"
-                    >
-                      Jul 16
-
-
-                    </span
-                  >
-                </div>
-              </div>
-            </div>
-          </ul>
-
-        
-          <ul class="listing">
-            <div class="listing-item">
-              <div class="listing-post">
-                <a href="/post/first-post/" title="自己做的第一個App">自己做的第一個App</a>
-                <div class="post-time">
-                  <span class="date"
-                    >
-                      Jul 6
-
-
-                    </span
-                  >
-                </div>
-              </div>
-            </div>
-          </ul>
 
         
 
+        
+          <span class="separator"><a class="tag" href="/tags/nullpointerexception/">nullpointerexception</a><a class="tag" href="/tags/nullsafety/">nullsafety</a><a class="tag" href="/tags/nullable/">nullable</a><a class="tag" href="/tags/nonnull/">nonnull</a><a class="tag" href="/tags/safecall/">safecall</a><a class="tag" href="/tags/safecast/">safecast</a><a class="tag" href="/tags/elvisoperator/">elvisoperator</a></span>
 
-      
-    </ul>
+
+
+
+        
+      </div>
+    </div>
+
+    
   </div>
 
 

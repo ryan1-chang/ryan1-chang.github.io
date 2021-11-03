@@ -6,7 +6,18 @@
     <description>Recent content on Ryan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 02 Nov 2021 02:34:35 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 04 Nov 2021 03:21:33 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kotlin如何避免NullPointerException</title>
+      <link>https://ryan1-chang.github.io/post/kotlin-npe/</link>
+      <pubDate>Thu, 04 Nov 2021 03:21:33 +0800</pubDate>
+      
+      <guid>https://ryan1-chang.github.io/post/kotlin-npe/</guid>
+      
+        <description>&lt;p&gt;NullPointerException已經可以說是java開發者的日常😱，只要程式邏輯上任何一處沒有經過深思熟慮都可能引發NPE的異常，那我們來看看kotlin在這一點上如何擺脫我們的困擾而做到&lt;a href=&#34;https://kotlinlang.org/docs/null-safety.html#top&#34; target=&#34;_blank&#34;&gt;Null safety&lt;/a&gt;的&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Kotlin變數宣告的val和var</title>
       <link>https://ryan1-chang.github.io/post/kotlin-val-var/</link>
