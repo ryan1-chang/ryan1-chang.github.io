@@ -17,7 +17,7 @@
   <title>
     Ryan Chang
       |
-      kotlin
+      Kotlin類別的起源：Any
 
 
     
@@ -26,20 +26,20 @@
 
   
   <meta charset="utf-8" />
-  <meta name="keywords" content="" />
-  <meta property="og:title" content="kotlin" />
+  <meta name="keywords" content="kotlin, any, superclass, object" />
+  <meta property="og:title" content="Kotlin類別的起源：Any" />
   <meta property="og:image" content="https://ryan1-chang.github.io/images/profile.png" />
   <meta name="author" content="Ryan Chang" /><meta name="generator" content="Hugo 0.88.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta
     name="description"
     content="
-      目前在ASUS任職Java Web軟體工程師
+      Kotlin類別的起源：Any
     "
   />
   <meta
     property="og:description"
     content="
-      目前在ASUS任職Java Web軟體工程師
+      Kotlin類別的起源：Any
     "
   />
   
@@ -75,12 +75,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
-  <link rel="canonical" href="/categories/kotlin/" />
+  <link rel="canonical" href="/post/kotlin-any/" />
 
   
-  <link rel="alternate" type="application/rss+xml" href="/categories/kotlin/index.xml" title="Ryan's Blog" />
-
-
   
   
   
@@ -103,8 +100,8 @@
 
   
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="kotlin"/>
-<meta name="twitter:description" content="目前在ASUS任職Java Web軟體工程師"/>
+<meta name="twitter:title" content="Kotlin類別的起源：Any"/>
+<meta name="twitter:description" content="Kotlin類別的起源：Any"/>
 
 
 
@@ -227,73 +224,69 @@
         <div class="autopagerize_page_element">
           <div class="content">
   <div
-    class="archive 
+    class="post 
       animated fadeInDown
 
     "
   >
-    <ul class="list-with-title">
+    <div class="post-content">
       
-        <div class="listing-title">2021</div>
+      <div class="post-title">
+        <h1>Kotlin類別的起源：Any</h1>
         
-          <ul class="listing">
-            <div class="listing-item">
-              <div class="listing-post">
-                <a href="/post/kotlin-any/" title="Kotlin類別的起源：Any">Kotlin類別的起源：Any</a>
-                <div class="post-time">
-                  <span class="date"
-                    >
-                      Nov 8
+          <div class="info">
+            <em class="fas fa-calendar-day"></em>
+            <span class="date"
+              >
+                Mon, Nov 8, 2021
 
 
-                    </span
-                  >
-                </div>
-              </div>
-            </div>
-          </ul>
+              </span
+            >
+            <em class="fas fa-stopwatch"></em>
+            <span class="reading-time">閱讀時間 1 分鐘</span>
+          </div>
 
         
-          <ul class="listing">
-            <div class="listing-item">
-              <div class="listing-post">
-                <a href="/post/kotlin-npe/" title="Kotlin如何避免NullPointerException">Kotlin如何避免NullPointerException</a>
-                <div class="post-time">
-                  <span class="date"
-                    >
-                      Nov 4
+      </div><blockquote>
+<p>The root of the Kotlin class hierarchy. Every Kotlin class has Any as a superclass.</p>
+</blockquote>
+<p>Any是kotlin所有不可為空類別(也就是沒有?)的父類別，相當於java的Object類別，如果要允許空值還有一個Any?，而且嚴格來說Any?才是所有類別的根類別，雖然Any和Any?並沒有繼承的關係</p>
+<p>這邊就要講到子類型(Subtyping)和繼承(Inheritance)兩個不同的概念，子類型講的是類型之間的關係，從相容性的角度來看，如B是A的子類型(subtype)，在需要A的地方，同樣也可以用B來替換，這跟實作無關，在java就是介面繼承，而繼承強調的是可以重用(reuse)父類別的代碼，屬於實作繼承，所以java的extends等於是同時宣告了繼承和父子類別的關係</p>
+<p>那我們用子類型的概念來看kotlin的Any和Any?，從這個例子可以看到參數為Any?的函數可以傳入一個Any的值，反之卻不行，所以Any可以代替Any?，符合子類型的定義，也就可以說Any?是Any的父類了</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">val</span> <span class="py">x</span><span class="p">:</span> <span class="n">Any</span> <span class="p">=</span> <span class="s2">&#34;String&#34;</span>
+    <span class="n">describe</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="p">}</span>
 
+<span class="k">fun</span> <span class="nf">describe</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">Any</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">obj</span> <span class="o">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">println</span><span class="p">(</span><span class="n">obj</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">simpleName</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-                    </span
-                  >
-                </div>
-              </div>
-            </div>
-          </ul>
-
+</code></pre></div></div>
+    <div class="post-footer">
+      <div class="info">
         
-          <ul class="listing">
-            <div class="listing-item">
-              <div class="listing-post">
-                <a href="/post/kotlin-val-var/" title="Kotlin變數宣告的val和var">Kotlin變數宣告的val和var</a>
-                <div class="post-time">
-                  <span class="date"
-                    >
-                      Nov 2
+          <span class="separator"><a class="category" href="/categories/kotlin/">kotlin</a></span>
 
 
-                    </span
-                  >
-                </div>
-              </div>
-            </div>
-          </ul>
+
 
         
 
+        
+          <span class="separator"><a class="tag" href="/tags/any/">any</a><a class="tag" href="/tags/superclass/">superclass</a><a class="tag" href="/tags/object/">object</a></span>
 
-      
-    </ul>
+
+
+
+        
+      </div>
+    </div>
+
+    
   </div>
 
 
