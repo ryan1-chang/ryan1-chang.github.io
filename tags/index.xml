@@ -6,13 +6,24 @@
     <description>Recent content in Tags on Ryan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Mon, 08 Nov 2021 01:45:22 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Nov 2021 03:12:10 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>any</title>
-      <link>https://ryan1-chang.github.io/tags/any/</link>
-      <pubDate>Mon, 08 Nov 2021 01:45:22 +0800</pubDate>
+      <title>class</title>
+      <link>https://ryan1-chang.github.io/tags/class/</link>
+      <pubDate>Wed, 10 Nov 2021 03:12:10 +0800</pubDate>
       
-      <guid>https://ryan1-chang.github.io/tags/any/</guid>
+      <guid>https://ryan1-chang.github.io/tags/class/</guid>
+      
+        <description></description>
+      
+    </item>
+    
+    <item>
+      <title>constructor</title>
+      <link>https://ryan1-chang.github.io/tags/constructor/</link>
+      <pubDate>Wed, 10 Nov 2021 03:12:10 +0800</pubDate>
+      
+      <guid>https://ryan1-chang.github.io/tags/constructor/</guid>
       
         <description></description>
       
@@ -21,9 +32,20 @@
     <item>
       <title>object</title>
       <link>https://ryan1-chang.github.io/tags/object/</link>
-      <pubDate>Mon, 08 Nov 2021 01:45:22 +0800</pubDate>
+      <pubDate>Wed, 10 Nov 2021 03:12:10 +0800</pubDate>
       
       <guid>https://ryan1-chang.github.io/tags/object/</guid>
+      
+        <description></description>
+      
+    </item>
+    
+    <item>
+      <title>any</title>
+      <link>https://ryan1-chang.github.io/tags/any/</link>
+      <pubDate>Mon, 08 Nov 2021 01:45:22 +0800</pubDate>
+      
+      <guid>https://ryan1-chang.github.io/tags/any/</guid>
       
         <description></description>
       

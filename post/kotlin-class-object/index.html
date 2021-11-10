@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="zh-tw"
+  data-theme=""
+><head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-201805698-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-201805698-2');
+</script>
+
+  <title>
+    Ryan Chang
+      |
+      Kotlin的類別和物件
+
+
+    
+
+  </title>
+
+  
+  <meta charset="utf-8" />
+  <meta name="keywords" content="kotlin, class, object, constructor" />
+  <meta property="og:title" content="Kotlin的類別和物件" />
+  <meta property="og:image" content="https://ryan1-chang.github.io/images/profile.png" />
+  <meta name="author" content="Ryan Chang" /><meta name="generator" content="Hugo 0.88.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta
+    name="description"
+    content="
+      Kotlin的類別和物件
+    "
+  />
+  <meta
+    property="og:description"
+    content="
+      Kotlin的類別和物件
+    "
+  />
+  
+    <meta name="google-site-verification" content="SPw7mH3bdZ8vvdk8eAj8tWpVuf3MFpICCeI3rjCCaa0" />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/css/main.min.e6eff2176eb511174b7079449eeac1077ed5e14fb3792a17c70e29db853e1628.css"
+    integrity="sha256-5u/yF261ERdLcHlEnurBB37V4U&#43;zeSoXxw4p24U&#43;Fig="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.f798cbda9aaa38f89eb38be6414bd082cfd71a6780375cbf67b6d2fb2b96491e.css"
+    integrity="sha256-95jL2pqqOPies4vmQUvQgs/XGmeAN1y/Z7bS&#43;yuWSR4="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous"
+  />
+  
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+  <link rel="canonical" href="/post/kotlin-class-object/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js"
+    integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js"
+      integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus="
+      crossorigin="anonymous"
+    ></script>
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Kotlin的類別和物件"/>
+<meta name="twitter:description" content="Kotlin的類別和物件"/>
+
+
+
+  
+</head>
+<body>
+    <header><div
+  class="page-top 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </a>
+  <nav>
+    <ul class="nav__list" id="navMenu">
+      <div class="nav__links">
+        
+        
+          
+          <li>
+            <a
+              
+              href="/"
+              
+              title=""
+              >Home</a
+            >
+          </li>
+
+        
+          
+          <li>
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >Posts</a
+            >
+          </li>
+
+        
+        
+      </div>
+      <li>
+        
+          <a class="theme-switch" title="Switch Theme">
+            <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+          </a>
+
+        
+      </li>
+    </ul>
+  </nav>
+</div>
+</header>
+    <div class="wrapper">
+      <aside><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="logo-title">
+      <div class="title">
+        <img src="/images/profile.png" alt="profile picture" />
+        <h3 title=""><a href="/">I&#39;m Ryan Chang</a></h3>
+        <div class="description">
+          <p>目前在ASUS任職Java Web軟體工程師</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+      
+        <li>
+          <a href="mailto:Ryan1.Chang@yandex.com" rel="me" aria-label="e-mail">
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li>
+          <a href="https://github.com/ryan1-chang" rel="me" aria-label="GitHub">
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  </div><footer class="footer footer--sidebar">
+  <div class="by_farbox">
+    <ul class="footer__list">
+      <li class="footer__item">
+        &copy;
+        
+          Ryan Chang
+          2021
+
+
+        
+      </li>
+      
+    </ul>
+  </div>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js"
+    integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I="
+    crossorigin="anonymous"
+  ></script></div>
+</aside>
+      <main>
+        <div class="autopagerize_page_element">
+          <div class="content">
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    <div class="post-content">
+      
+      <div class="post-title">
+        <h1>Kotlin的類別和物件</h1>
+        
+          <div class="info">
+            <em class="fas fa-calendar-day"></em>
+            <span class="date"
+              >
+                Wed, Nov 10, 2021
+
+
+              </span
+            >
+            <em class="fas fa-stopwatch"></em>
+            <span class="reading-time">閱讀時間 1 分鐘</span>
+          </div>
+
+        
+      </div><p>類別在物件導向就是用程式來模擬描述現實世界中實體的特性(屬性,property)和行為(函數,function)，這些實體就是從類別衍生出來的物件，物件就會擁有這個類別的屬性和函數，藉由物件間的互動來完成程式的要求</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span> <span class="cm">/*...*/</span> <span class="p">}</span>
+<span class="c1">// 如果沒有主體內容則可以省略大括號
+</span><span class="c1"></span><span class="k">class</span> <span class="nc">Empty</span>
+</code></pre></div><p>在定義類別時會用到建構函數(constructor)來進行物件的初始化，kotlin要產生物件只需要呼叫建構函數，不需要new，kotlin的類別可以有一個主建構函數(primary constructor)和一或多個次級建構函數(secondary constructor)，如果沒有提供任何建構函數，則kotlin預設會幫你產生一個public無參數的主建構函數</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="c1">// 主建構函數寫在類別名稱的後面
+</span><span class="c1">// 沒有要加上annotation或存取修飾子就可以省略constructor關鍵字
+</span><span class="c1"></span><span class="k">class</span> <span class="nc">Person</span> <span class="k">constructor</span><span class="p">(</span><span class="n">firstName</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/*...*/</span> <span class="p">}</span>
+<span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">firstName</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/*...*/</span> <span class="p">}</span>
+<span class="c1">// 這個是加上的例子
+</span><span class="c1"></span><span class="k">class</span> <span class="nc">Person</span> <span class="k">public</span> <span class="nd">@Inject</span> <span class="k">constructor</span><span class="p">(</span><span class="n">firstName</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/*...*/</span> <span class="p">}</span>
+
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">val</span> <span class="py">customer1</span> <span class="p">=</span> <span class="n">Customer</span><span class="p">(</span><span class="s2">&#34;Ryan &#34;</span><span class="p">)</span> <span class="c1">// 產生物件實體在kotlin沒有new關鍵字
+</span><span class="c1"></span>    <span class="n">println</span><span class="p">(</span><span class="s2">&#34;name: </span><span class="si">${customer1.name}</span><span class="s2">_Chang&#34;</span><span class="p">)</span> <span class="c1">// 可以看到名字尾端空格被去掉才加上姓氏
+</span><span class="c1"></span>    <span class="n">println</span><span class="p">(</span><span class="s2">&#34;email: </span><span class="si">${customer1.email}</span><span class="s2">&#34;</span><span class="p">)</span> <span class="c1">// 主建構函數沒有給email
+</span><span class="c1"></span>    <span class="k">val</span> <span class="py">customer2</span> <span class="p">=</span> <span class="n">Customer</span><span class="p">(</span><span class="s2">&#34;Ryan &#34;</span><span class="p">,</span> <span class="s2">&#34;Ryan_Chang@kotlin.com&#34;</span><span class="p">)</span> <span class="c1">// 呼叫次級建構函數來產生物件
+</span><span class="c1"></span>    <span class="n">println</span><span class="p">(</span><span class="s2">&#34;name: </span><span class="si">${customer2.name}</span><span class="s2">_Chang&#34;</span><span class="p">)</span>
+    <span class="n">println</span><span class="p">(</span><span class="s2">&#34;email: </span><span class="si">${customer2.email}</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 主建構函數不能包含其它代碼，初始化程式可以寫在init區塊裡
+</span><span class="c1">// kotlin提供了一個簡潔語法，在主建構函數可以直接宣告類別屬性並初始化它們
+</span><span class="c1">// class Customer(val name: String)等同以下
+</span><span class="c1">// 執行順序 1
+</span><span class="c1"></span><span class="k">class</span> <span class="nc">Customer</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">val</span> <span class="py">name</span><span class="p">:</span> <span class="n">String</span>
+    <span class="k">var</span> <span class="py">email</span><span class="p">:</span> <span class="n">String</span> <span class="p">=</span> <span class="s2">&#34;NONE&#34;</span>
+
+    <span class="c1">// 執行順序 2
+</span><span class="c1"></span>    <span class="k">init</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">name</span><span class="p">.</span><span class="n">trim</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 如果存在主建構函數，次級建構函數就必須先用this去呼叫它
+</span><span class="c1"></span>    <span class="c1">// 執行順序 3
+</span><span class="c1"></span>    <span class="k">constructor</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="p">:</span> <span class="k">this</span><span class="p">(</span><span class="n">name</span><span class="p">.</span><span class="n">uppercase</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">email</span> <span class="p">=</span> <span class="n">email</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+    <div class="post-footer">
+      <div class="info">
+        
+          <span class="separator"><a class="category" href="/categories/kotlin/">kotlin</a></span>
+
+
+
+
+        
+
+        
+          <span class="separator"><a class="tag" href="/tags/class/">class</a><a class="tag" href="/tags/object/">object</a><a class="tag" href="/tags/constructor/">constructor</a></span>
+
+
+
+
+        
+      </div>
+    </div>
+
+    
+  </div>
+
+
+          </div>
+        </div>
+      </main>
+    </div><footer class="footer footer--base">
+  <div class="by_farbox">
+    <ul class="footer__list">
+      <li class="footer__item">
+        &copy;
+        
+          Ryan Chang
+          2021
+
+
+        
+      </li>
+      
+    </ul>
+  </div>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js"
+    integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I="
+    crossorigin="anonymous"
+  ></script></body>
+</html>

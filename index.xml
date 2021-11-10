@@ -6,7 +6,22 @@
     <description>Recent content on Ryan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Mon, 08 Nov 2021 01:45:22 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Nov 2021 03:12:10 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kotlin的類別和物件</title>
+      <link>https://ryan1-chang.github.io/post/kotlin-class-object/</link>
+      <pubDate>Wed, 10 Nov 2021 03:12:10 +0800</pubDate>
+      
+      <guid>https://ryan1-chang.github.io/post/kotlin-class-object/</guid>
+      
+        <description>&lt;p&gt;類別在物件導向就是用程式來模擬描述現實世界中實體的特性(屬性,property)和行為(函數,function)，這些實體就是從類別衍生出來的物件，物件就會擁有這個類別的屬性和函數，藉由物件間的互動來完成程式的要求&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-kotlin&#34; data-lang=&#34;kotlin&#34;&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Person&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;cm&#34;&gt;/*...*/&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// 如果沒有主體內容則可以省略大括號
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Empty&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Kotlin類別的起源：Any</title>
       <link>https://ryan1-chang.github.io/post/kotlin-any/</link>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>object on Ryan&#39;s Blog</title>
-    <link>https://ryan1-chang.github.io/tags/object/</link>
-    <description>Recent content in object on Ryan&#39;s Blog</description>
+    <title>constructor on Ryan&#39;s Blog</title>
+    <link>https://ryan1-chang.github.io/tags/constructor/</link>
+    <description>Recent content in constructor on Ryan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 10 Nov 2021 03:12:10 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/tags/object/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Nov 2021 03:12:10 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/tags/constructor/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kotlin的類別和物件</title>
       <link>https://ryan1-chang.github.io/post/kotlin-class-object/</link>
@@ -19,20 +19,6 @@
 &lt;span class=&#34;c1&#34;&gt;// 如果沒有主體內容則可以省略大括號
 &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Empty&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Kotlin類別的起源：Any</title>
-      <link>https://ryan1-chang.github.io/post/kotlin-any/</link>
-      <pubDate>Mon, 08 Nov 2021 01:45:22 +0800</pubDate>
-      
-      <guid>https://ryan1-chang.github.io/post/kotlin-any/</guid>
-      
-        <description>&lt;blockquote&gt;
-&lt;p&gt;The root of the Kotlin class hierarchy. Every Kotlin class has Any as a superclass.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Any是kotlin所有不可為空類別(也就是沒有?)的父類別，相當於java的Object類別，如果要允許空值還有一個Any?，而且嚴格來說Any?才是所有類別的根類別，雖然Any和Any?並沒有繼承的關係&lt;/p&gt;</description>
       
     </item>
     
