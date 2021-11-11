@@ -6,7 +6,18 @@
     <description>Recent content on Ryan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 10 Nov 2021 03:12:10 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 12 Nov 2021 01:03:13 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kotlin類別的繼承</title>
+      <link>https://ryan1-chang.github.io/post/kotlin-inheritance/</link>
+      <pubDate>Fri, 12 Nov 2021 01:03:13 +0800</pubDate>
+      
+      <guid>https://ryan1-chang.github.io/post/kotlin-inheritance/</guid>
+      
+        <description>&lt;p&gt;繼承(Inheritance)是物件導向中很重要的概念，我們可以為具有相似特性的子類別(derived class)共同繼承自一個父類別(base class)，這樣不同的子類別都會有相同的特性(父類別的屬性和函數)，又各自擁有自己的屬性和函數，可以達到差異化並減少重複撰寫相同的實作代碼&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Kotlin的類別和物件</title>
       <link>https://ryan1-chang.github.io/post/kotlin-class-object/</link>
