@@ -6,7 +6,18 @@
     <description>Recent content on Ryan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Fri, 12 Nov 2021 01:03:13 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 16 Nov 2021 02:58:38 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kotlin的this與類別標籤</title>
+      <link>https://ryan1-chang.github.io/post/kotlin-class-label/</link>
+      <pubDate>Tue, 16 Nov 2021 02:58:38 +0800</pubDate>
+      
+      <guid>https://ryan1-chang.github.io/post/kotlin-class-label/</guid>
+      
+        <description>&lt;p&gt;在類別裡this表示當前類別的物件，因為它作用的範圍是在巢狀中最內層的區塊，所以如果是在內部類別或匿名類別裡，要怎麼存取到外部類別的物件，kotlin提供了方便的表示式，類別本身都會隱含一個同名的標籤，透過this加上這個標籤的方式就可以指定是代表哪個類別物件了&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Kotlin類別的繼承</title>
       <link>https://ryan1-chang.github.io/post/kotlin-inheritance/</link>
