@@ -6,7 +6,18 @@
     <description>Recent content in Posts on Ryan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 16 Nov 2021 02:58:38 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 18 Nov 2021 05:35:33 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kotlin簡潔的利器：local function</title>
+      <link>https://ryan1-chang.github.io/post/kotlin-local-function/</link>
+      <pubDate>Thu, 18 Nov 2021 05:35:33 +0800</pubDate>
+      
+      <guid>https://ryan1-chang.github.io/post/kotlin-local-function/</guid>
+      
+        <description>&lt;p&gt;如果只是local變數就不值得一提了，但是在kotlin連函數都可以宣告在另一個函數的local範圍內，可以宣告local函數能帶來什麼好處呢？&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Kotlin的this與類別標籤</title>
       <link>https://ryan1-chang.github.io/post/kotlin-class-label/</link>

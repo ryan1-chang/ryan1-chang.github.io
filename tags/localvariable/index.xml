@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>localvariable on Ryan&#39;s Blog</title>
+    <link>https://ryan1-chang.github.io/tags/localvariable/</link>
+    <description>Recent content in localvariable on Ryan&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Thu, 18 Nov 2021 05:35:33 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/tags/localvariable/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kotlin簡潔的利器：local function</title>
+      <link>https://ryan1-chang.github.io/post/kotlin-local-function/</link>
+      <pubDate>Thu, 18 Nov 2021 05:35:33 +0800</pubDate>
+      
+      <guid>https://ryan1-chang.github.io/post/kotlin-local-function/</guid>
+      
+        <description>&lt;p&gt;如果只是local變數就不值得一提了，但是在kotlin連函數都可以宣告在另一個函數的local範圍內，可以宣告local函數能帶來什麼好處呢？&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

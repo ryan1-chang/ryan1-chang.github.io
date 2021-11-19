@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="zh-tw"
+  data-theme=""
+><head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-201805698-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-201805698-2');
+</script>
+
+  <title>
+    Ryan Chang
+      |
+      Kotlin簡潔的利器：local function
+
+
+    
+
+  </title>
+
+  
+  <meta charset="utf-8" />
+  <meta name="keywords" content="kotlin, function, localfunction, localvariable, dry" />
+  <meta property="og:title" content="Kotlin簡潔的利器：local function" />
+  <meta property="og:image" content="https://ryan1-chang.github.io/images/profile.png" />
+  <meta name="author" content="Ryan Chang" /><meta name="generator" content="Hugo 0.88.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta
+    name="description"
+    content="
+      Kotlin簡潔的利器：local function
+    "
+  />
+  <meta
+    property="og:description"
+    content="
+      Kotlin簡潔的利器：local function
+    "
+  />
+  
+    <meta name="google-site-verification" content="SPw7mH3bdZ8vvdk8eAj8tWpVuf3MFpICCeI3rjCCaa0" />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/css/main.min.e6eff2176eb511174b7079449eeac1077ed5e14fb3792a17c70e29db853e1628.css"
+    integrity="sha256-5u/yF261ERdLcHlEnurBB37V4U&#43;zeSoXxw4p24U&#43;Fig="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.f798cbda9aaa38f89eb38be6414bd082cfd71a6780375cbf67b6d2fb2b96491e.css"
+    integrity="sha256-95jL2pqqOPies4vmQUvQgs/XGmeAN1y/Z7bS&#43;yuWSR4="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous"
+  />
+  
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+  <link rel="canonical" href="/post/kotlin-local-function/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js"
+    integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js"
+      integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus="
+      crossorigin="anonymous"
+    ></script>
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Kotlin簡潔的利器：local function"/>
+<meta name="twitter:description" content="Kotlin簡潔的利器：local function"/>
+
+
+
+  
+</head>
+<body>
+    <header><div
+  class="page-top 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </a>
+  <nav>
+    <ul class="nav__list" id="navMenu">
+      <div class="nav__links">
+        
+        
+          
+          <li>
+            <a
+              
+              href="/"
+              
+              title=""
+              >Home</a
+            >
+          </li>
+
+        
+          
+          <li>
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >Posts</a
+            >
+          </li>
+
+        
+        
+      </div>
+      <li>
+        
+          <a class="theme-switch" title="Switch Theme">
+            <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+          </a>
+
+        
+      </li>
+    </ul>
+  </nav>
+</div>
+</header>
+    <div class="wrapper">
+      <aside><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="logo-title">
+      <div class="title">
+        <img src="/images/profile.png" alt="profile picture" />
+        <h3 title=""><a href="/">I&#39;m Ryan Chang</a></h3>
+        <div class="description">
+          <p>目前在ASUS任職Java Web軟體工程師</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+      
+        <li>
+          <a href="mailto:Ryan1.Chang@yandex.com" rel="me" aria-label="e-mail">
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li>
+          <a href="https://github.com/ryan1-chang" rel="me" aria-label="GitHub">
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  </div><footer class="footer footer--sidebar">
+  <div class="by_farbox">
+    <ul class="footer__list">
+      <li class="footer__item">
+        &copy;
+        
+          Ryan Chang
+          2021
+
+
+        
+      </li>
+      
+    </ul>
+  </div>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js"
+    integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I="
+    crossorigin="anonymous"
+  ></script></div>
+</aside>
+      <main>
+        <div class="autopagerize_page_element">
+          <div class="content">
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    <div class="post-content">
+      
+      <div class="post-title">
+        <h1>Kotlin簡潔的利器：local function</h1>
+        
+          <div class="info">
+            <em class="fas fa-calendar-day"></em>
+            <span class="date"
+              >
+                Thu, Nov 18, 2021
+
+
+              </span
+            >
+            <em class="fas fa-stopwatch"></em>
+            <span class="reading-time">閱讀時間 1 分鐘</span>
+          </div>
+
+        
+      </div><p>如果只是local變數就不值得一提了，但是在kotlin連函數都可以宣告在另一個函數的local範圍內，可以宣告local函數能帶來什麼好處呢？</p>
+<p>如果是在java的方法中有重複的代碼，要遵循DRY(Don’t Repeat Yourself)原則抽出成可以重用的獨立方法，但是在java的方法必須依附在類別，這種事做的多了，會造成一個問題就是這些獨立出的小方法其實只在原本的方法會用到，其它類別裡的方法並不需要共用到它，這樣顯得放到class level有點多餘，又會讓充斥這些小方法的整個類別越來越難以閱讀和維護，kotlin的local function就可以讓你把這個函數重複的代碼寫在自己裡面，經過這樣整理的內部函數也讓整個函數的結構脈絡更加清晰，更容易讀懂這個函數的程式執行流程在做什麼</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">val</span> <span class="py">username</span> <span class="p">=</span> <span class="s2">&#34;Ryan&#34;</span>
+    <span class="k">val</span> <span class="py">password</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+
+    <span class="c1">// test() 錯誤，local function跟local variable一樣，必須先宣告才能使用
+</span><span class="c1"></span>    <span class="c1">// local function
+</span><span class="c1"></span>    <span class="k">fun</span> <span class="nf">test</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">LoginAction</span><span class="p">().</span><span class="n">login</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span> <span class="c1">// 區域函數能夠直接存取外部函數的區域變數
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="n">test</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">LoginAction</span> <span class="p">{</span>
+    <span class="k">fun</span> <span class="nf">login</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 重複的檢查代碼
+</span><span class="c1">//        if (username.isEmpty()) {
+</span><span class="c1">//            throw IllegalArgumentException(&#34;username must not be empty&#34;)
+</span><span class="c1">//        }
+</span><span class="c1">//        if (password.isEmpty()) {
+</span><span class="c1">//            throw IllegalArgumentException(&#34;password must not be empty&#34;)
+</span><span class="c1">//        }
+</span><span class="c1"></span>        <span class="c1">// local function
+</span><span class="c1"></span>        <span class="k">fun</span> <span class="nf">validate</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">paramName</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">value</span><span class="p">.</span><span class="n">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+                <span class="k">throw</span> <span class="n">IllegalArgumentException</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">$paramName</span><span class="s2"> must not be empty&#34;</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="c1">// 將檢查輸入的代碼獨立成一個內部共用函數再去呼叫
+</span><span class="c1"></span>        <span class="n">validate</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="s2">&#34;username&#34;</span><span class="p">)</span>
+        <span class="n">validate</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="s2">&#34;password&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+    <div class="post-footer">
+      <div class="info">
+        
+          <span class="separator"><a class="category" href="/categories/kotlin/">kotlin</a></span>
+
+
+
+
+        
+
+        
+          <span class="separator"><a class="tag" href="/tags/function/">function</a><a class="tag" href="/tags/localfunction/">localfunction</a><a class="tag" href="/tags/localvariable/">localvariable</a><a class="tag" href="/tags/dry/">dry</a></span>
+
+
+
+
+        
+      </div>
+    </div>
+
+    
+  </div>
+
+
+          </div>
+        </div>
+      </main>
+    </div><footer class="footer footer--base">
+  <div class="by_farbox">
+    <ul class="footer__list">
+      <li class="footer__item">
+        &copy;
+        
+          Ryan Chang
+          2021
+
+
+        
+      </li>
+      
+    </ul>
+  </div>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js"
+    integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I="
+    crossorigin="anonymous"
+  ></script></body>
+</html>
