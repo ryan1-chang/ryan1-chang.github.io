@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>instagram on Ryan&#39;s Blog</title>
-    <link>https://ryan1-chang.github.io/tags/instagram/</link>
-    <description>Recent content in instagram on Ryan&#39;s Blog</description>
+    <title>appeal on Ryan&#39;s Blog</title>
+    <link>https://ryan1-chang.github.io/tags/appeal/</link>
+    <description>Recent content in appeal on Ryan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 24 Nov 2021 02:38:59 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/tags/instagram/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 24 Nov 2021 02:38:59 +0800</lastBuildDate><atom:link href="https://ryan1-chang.github.io/tags/appeal/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>上架的App發生違反侵犯商標權政策的問題</title>
       <link>https://ryan1-chang.github.io/post/app-trademark/</link>
@@ -15,17 +15,6 @@
       <guid>https://ryan1-chang.github.io/post/app-trademark/</guid>
       
         <description>&lt;p&gt;突如其來收到Google Play的通知信✉️，也沒想過會遇到這種狀況，原因是因為之前寫了一支可以用來抓Instagram公開帖子的原始照片的app，然後在取名的時候想說要跟Instagram有點關聯，所以用了Gram作為app名稱的一部分，也就是因為這樣侵犯了商標權，被Instagram申訴了，這應該可以算是某種成就吧😅，但不是一件好事啊😣&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>自己做的第一個App</title>
-      <link>https://ryan1-chang.github.io/post/first-post/</link>
-      <pubDate>Tue, 06 Jul 2021 23:06:39 +0800</pubDate>
-      
-      <guid>https://ryan1-chang.github.io/post/first-post/</guid>
-      
-        <description>&lt;p&gt;其實早在Android 2.3還是用Eclipse開發的時代就有寫過，後來一直都是做Web，直到最近因為新冠肺炎待在家躲疫情，WFH省了通勤時間，才有了這個app的誕生，在嘗試用Android Studio開發和重新摸索一些東西後，也順利的讓程式上架了&lt;/p&gt;</description>
       
     </item>
     
